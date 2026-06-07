@@ -1,10 +1,10 @@
 import random
 from math import gcd
 
-def generate_answers(decimals = True, negatives = True):
 
-    x_answer = random.randint(1, 10)   # Generate random integer between 0 - 10
-    y_answer = random.randint(1, 10)   # Generate random integer between 0 - 10
+def generate_answers(decimals=True, negatives=True):
+    x_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
+    y_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
 
     if decimals:
         x_make_decimal = random.randint(1, 4)
@@ -18,7 +18,7 @@ def generate_answers(decimals = True, negatives = True):
 
     # This greats a 1 in 4 chance of each answer being a decimal
 
-    if negatives:   # Decides whether to make x or y a negative answer
+    if negatives:  # Decides whether to make x or y a negative answer
         x_negative = random.randint(1, 3)
         y_negative = random.randint(1, 3)
 
@@ -32,7 +32,8 @@ def generate_answers(decimals = True, negatives = True):
 
     return x_answer, y_answer
 
-def generate_coefficients(negative_coefficients = True):
+
+def generate_coefficients(negative_coefficients=True):
     x1 = random.randint(2, 8)
     y1 = random.randint(2, 8)
 
@@ -49,6 +50,7 @@ def generate_coefficients(negative_coefficients = True):
     # Creates a 1 in 4 chance of the coefficients being negative
 
     return x1, y1
+
 
 def print_equations(x1, x2, y1, y2, x_answer, y_answer):
     answer_1 = x1 * x_answer + y1 * y_answer
@@ -100,17 +102,16 @@ def print_equations(x1, x2, y1, y2, x_answer, y_answer):
     # Prints the answers for x and y
 
 
+def generate_eqs_one_term_same(decimals=True, negatives=True, negative_coefficients=True):
+    x_answer, y_answer = generate_answers(decimals=decimals, negatives=negatives)  # Creates the x and y answers
 
-def generate_eqs_one_term_same(decimals = True, negatives = True, negative_coefficients = True):
-    x_answer, y_answer = generate_answers(decimals = decimals, negatives = negatives) # Creates the x and y answers
+    x1, x2, y1, y2 = 0, 0, 0, 0  # Initialising the coefficients for while loop check
 
-    x1, x2, y1, y2 = 0, 0, 0, 0 # Initialising the coefficients for while loop check
+    while x1 == x2 or y1 == y2:  # This makes sure the two x and two y coefficients are not the same at the start.
+        x1, y1 = generate_coefficients(negative_coefficients=negative_coefficients)
+        x2, y2 = generate_coefficients(negative_coefficients=negative_coefficients)
 
-    while x1 == x2 or y1 == y2: # This makes sure the two x and two y coefficients are not the same at the start.
-        x1, y1 = generate_coefficients(negative_coefficients = negative_coefficients)
-        x2, y2 = generate_coefficients(negative_coefficients = negative_coefficients)
-    
-    make_coefficient_same = random.randint(0,1)
+    make_coefficient_same = random.randint(0, 1)
 
     if make_coefficient_same:
         x1 = x2
@@ -120,19 +121,25 @@ def generate_eqs_one_term_same(decimals = True, negatives = True, negative_coeff
 
     # This randomly makes either the x or y coefficient the same
 
-    print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer) # Prints the output
+    print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer)  # Prints the output
 
-def generate_eqs_multiply_one(decimals = True, negatives = True, negative_coefficients = True):
+    equations_solveable = True
 
-    x_answer, y_answer = generate_answers(decimals = decimals, negatives = negatives)
+    return  equations_solveable3
+
+
+def generate_eqs_multiply_one(decimals=True, negatives=True, negative_coefficients=True):
+    x_answer, y_answer = generate_answers(decimals=decimals, negatives=negatives)
 
     x1, x2, y1, y2 = 0, 0, 0, 0
 
     while x1 == x2 or y1 == y2:
-        x1, y1 = generate_coefficients(negative_coefficients=negative_coefficients) # Generates values for x coefficients
-        x2, y2 = generate_coefficients(negative_coefficients=negative_coefficients) # Generates values for y coefficients
+        x1, y1 = generate_coefficients(
+            negative_coefficients=negative_coefficients)  # Generates values for x coefficients
+        x2, y2 = generate_coefficients(
+            negative_coefficients=negative_coefficients)  # Generates values for y coefficients
 
-    make_x_suitable = random.randint(0,1) # This decides whether to make x or y the suitable term
+    make_x_suitable = random.randint(0, 1)  # This decides whether to make x or y the suitable term
 
     list_chooser = random.randint(1, 4)
     if list_chooser == 1:
@@ -142,27 +149,28 @@ def generate_eqs_multiply_one(decimals = True, negatives = True, negative_coeffi
 
     # Since there is roughly a 50% chance of one of the chosen pairs being a 1, this makes the likelyhood 1 in 4.
 
-    list_selector = random.randint(0,len(suitable_coefficients)-1) # Chooses a random pair of coefficients fron the list
+    list_selector = random.randint(0,
+                                   len(suitable_coefficients) - 1)  # Chooses a random pair of coefficients fron the list
 
     if make_x_suitable:
-        x1, x2 = suitable_coefficients[list_selector] # assigns the tuple from the list to the x coefficients
+        x1, x2 = suitable_coefficients[list_selector]  # assigns the tuple from the list to the x coefficients
 
     else:
-        y1, y2 = suitable_coefficients[list_selector] # assigns the tuple from the list to the y coefficients
+        y1, y2 = suitable_coefficients[list_selector]  # assigns the tuple from the list to the y coefficients
 
     equations_solveable = True
 
-    if x1/x2 == y1/y2: # This checks that Eq 1 is not a scalar multiple of Eq 2 and hence unsolveable
+    if x1 / x2 == y1 / y2:  # This checks that Eq 1 is not a scalar multiple of Eq 2 and hence unsolveable
         equations_solveable = False
 
-
     if equations_solveable:
-        print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer) # Prints the output
+        print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer)  # Prints the output
 
-    return equations_solveable # This output allows the for loop at the end to skip the equation and generate a new one
+    return equations_solveable  # This output allows the for loop at the end to skip the equation and generate a new one
 
-def generate_eqs_multiply_two(decimals  = True, negatives = True, negative_coefficients = True):
-    x_answer, y_answer = generate_answers(decimals=decimals, negatives=negatives) # Assigns x and y answers
+
+def generate_eqs_multiply_two(decimals=True, negatives=True, negative_coefficients=True):
+    x_answer, y_answer = generate_answers(decimals=decimals, negatives=negatives)  # Assigns x and y answers
 
     x1, x2, y1, y2 = 2, 2, 2, 2
     while gcd(x1, x2) != 1 or gcd(y1, y2) != 1:
@@ -171,7 +179,9 @@ def generate_eqs_multiply_two(decimals  = True, negatives = True, negative_coeff
 
     # This checks that the x and y coefficients are coprime before proceeding
 
-    print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer) # Prints the output
+    print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer)  # Prints the output
+
+    equations_solveable = True
 
     return equations_solveable
 
@@ -188,7 +198,7 @@ if __name__ == '__main__':
     while True:
         try:
             equation_type = int(input("Input your choice: "))
-            if equation_type in range(1,4):
+            if equation_type in range(1, 4):
                 break
             print("That is not a valid choice.")
 
@@ -206,7 +216,6 @@ if __name__ == '__main__':
             break
 
         print("Invalid choice. Please try again.")
-
 
     print("Do you want decimal answers?")
     decimal_answers_check = False
@@ -242,19 +251,22 @@ if __name__ == '__main__':
     for i in range(0, number_of_equations):
 
         if equation_type == 1:
-            output = generate_eqs_one_term_same(decimals=decimal_answers_check, negatives=negative_answers_check, negative_coefficients=negative_coefficients_check)
+            output = generate_eqs_one_term_same(decimals=decimal_answers_check, negatives=negative_answers_check,
+                                                negative_coefficients=negative_coefficients_check)
             print("")
             if output == False:
-                 i -= 1
+                i -= 1
 
         elif equation_type == 2:
-            output = generate_eqs_multiply_one(decimals=decimal_answers_check, negatives=negative_answers_check, negative_coefficients=negative_coefficients_check)
+            output = generate_eqs_multiply_one(decimals=decimal_answers_check, negatives=negative_answers_check,
+                                               negative_coefficients=negative_coefficients_check)
             print("")
             if output == False:
-                 i -= 1
+                i -= 1
 
         else:
-            output = generate_eqs_multiply_two(decimals=decimal_answers_check, negatives=negative_answers_check, negative_coefficients=negative_coefficients_check)
+            output = generate_eqs_multiply_two(decimals=decimal_answers_check, negatives=negative_answers_check,
+                                               negative_coefficients=negative_coefficients_check)
             print("")
             if output == False:
-                 i -= 1
+                i -= 1
