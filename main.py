@@ -125,7 +125,13 @@ def generate_eqs_one_term_same(decimals=True, negatives=True, negative_coefficie
 
     equations_solveable = True
 
-    return  equations_solveable
+    if x1 / x2 == y1 / y2:  # This checks that Eq 1 is not a scalar multiple of Eq 2 and hence unsolveable
+        equations_solveable = False
+
+    if equations_solveable:
+        print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer)  # Prints the output
+
+    return equations_solveable  # This output allows the for loop at the end to skip the equation and generate a new one
 
 
 def generate_eqs_multiply_one(decimals=True, negatives=True, negative_coefficients=True):
