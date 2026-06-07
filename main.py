@@ -83,7 +83,7 @@ def print_equations(x1, x2, y1, y2, x_answer, y_answer):
 
     # This makes sure 1x is output as x and 1y is output as y
 
-    if y1 < 0 or y2 < 0:
+    if y1 < 0:
         print(f'{x1_output}x - {abs(y1)}y = {answer_1}')
 
     else:
