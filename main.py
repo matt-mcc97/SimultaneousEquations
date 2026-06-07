@@ -121,8 +121,6 @@ def generate_eqs_one_term_same(decimals=True, negatives=True, negative_coefficie
 
     # This randomly makes either the x or y coefficient the same
 
-    print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer)  # Prints the output
-
     equations_solveable = True
 
     if x1 / x2 == y1 / y2:  # This checks that Eq 1 is not a scalar multiple of Eq 2 and hence unsolveable
@@ -184,8 +182,6 @@ def generate_eqs_multiply_two(decimals=True, negatives=True, negative_coefficien
         x2, y2 = generate_coefficients(negative_coefficients=negative_coefficients)
 
     # This checks that the x and y coefficients are coprime before proceeding
-
-    print_equations(x1=x1, x2=x2, y1=y1, y2=y2, x_answer=x_answer, y_answer=y_answer)  # Prints the output
 
     equations_solveable = True
 
