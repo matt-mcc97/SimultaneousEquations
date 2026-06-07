@@ -3,8 +3,12 @@ from math import gcd
 
 
 def generate_answers(decimals=True, negatives=True):
-    x_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
-    y_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
+    x_answer = 1
+    y_answer = 1
+
+    while x_answer == y_answer:
+        x_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
+        y_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
 
     if decimals:
         x_make_decimal = random.randint(1, 4)
