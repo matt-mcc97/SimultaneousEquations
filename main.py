@@ -125,7 +125,7 @@ def generate_eqs_one_term_same(decimals=True, negatives=True, negative_coefficie
 
     equations_solveable = True
 
-    return  equations_solveable3
+    return  equations_solveable
 
 
 def generate_eqs_multiply_one(decimals=True, negatives=True, negative_coefficients=True):
