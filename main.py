@@ -7,8 +7,18 @@ def generate_answers(decimals=True, negatives=True):
     y_answer = 1
 
     while x_answer == y_answer:
-        x_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
-        y_answer = random.randint(1, 10)  # Generate random integer between 0 - 10
+        x_answer = random.randint(1, 5)  # Generate random integer between 0 - 10
+        y_answer = random.randint(1, 5)  # Generate random integer between 0 - 10
+
+
+    make_x_bigger = random.randint(1, 5)
+    make_y_bigger = random.randint(1, 5)
+    
+    if make_x_bigger == 5:
+        x_answer += 4
+        
+    if make_y_bigger == 5:
+        y_answer += 4
 
     if decimals:
         x_make_decimal = random.randint(1, 4)
@@ -38,8 +48,17 @@ def generate_answers(decimals=True, negatives=True):
 
 
 def generate_coefficients(negative_coefficients=True):
-    x1 = random.randint(2, 8)
-    y1 = random.randint(2, 8)
+    x1 = random.randint(2, 4)
+    y1 = random.randint(2, 4)
+    
+    make_x_bigger = random.randint(1, 5)
+    make_y_bigger = random.randint(1, 5)
+    
+    if make_x_bigger == 5:
+        x1 += 4
+        
+    if make_y_bigger == 5:
+        y1 += 4
 
     if negative_coefficients:
         x_negative = random.randint(1, 4)
