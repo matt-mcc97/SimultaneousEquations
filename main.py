@@ -160,7 +160,7 @@ def generate_eqs_multiply_one(decimals=True, negatives=True, negative_coefficien
 
     x1, x2, y1, y2 = 0, 0, 0, 0
 
-    while x1 == x2 or y1 == y2:
+    while abs(x1) == abs(x2) or abs(y1) == abs(y2):
         x1, y1 = generate_coefficients(
             negative_coefficients=negative_coefficients)  # Generates values for x coefficients
         x2, y2 = generate_coefficients(
@@ -208,7 +208,7 @@ def generate_eqs_multiply_two(decimals=True, negatives=True, negative_coefficien
 
     equations_solveable = True
 
-    if x1 / x2 == y1 / y2:  # This checks that Eq 1 is not a scalar multiple of Eq 2 and hence unsolveable
+    if x1 / x2) == y1 / y2:  # This checks that Eq 1 is not a scalar multiple of Eq 2 and hence unsolveable
         equations_solveable = False
 
     if equations_solveable:
