@@ -270,7 +270,7 @@ if __name__ == '__main__':
 
         print("Invalid choice. Please try again.")
 
-    print("How many equations do you want to generate? [1 - 10]")
+    print("How many equations do you want to generate? [1 - 100]")
     number_of_equations = 1
     while True:
         number_of_equations = int(input("Input your choice: "))
