@@ -274,30 +274,36 @@ if __name__ == '__main__':
     number_of_equations = 1
     while True:
         number_of_equations = int(input("Input your choice: "))
-        if number_of_equations in range(1, 11):
+        if number_of_equations in range(1, 101):
             break
 
-        print("Choose a valid integer between 1 and 10.")
+        print("Choose a valid integer between 1 and 100.")
+        
+    print("---------------------------------")    
 
     for i in range(0, number_of_equations):
+        
+        output = False
 
         if equation_type == 1:
-            output = generate_eqs_one_term_same(decimals=decimal_answers_check, negatives=negative_answers_check,
+            
+            while not output:
+                output = generate_eqs_one_term_same(decimals=decimal_answers_check, negatives=negative_answers_check,
                                                 negative_coefficients=negative_coefficients_check)
-            print("")
-            if output == False:
-                i -= 1
 
         elif equation_type == 2:
-            output = generate_eqs_multiply_one(decimals=decimal_answers_check, negatives=negative_answers_check,
+            
+            while not output:
+                output = generate_eqs_multiply_one(decimals=decimal_answers_check, negatives=negative_answers_check,
                                                negative_coefficients=negative_coefficients_check)
-            print("")
-            if output == False:
-                i -= 1
 
         else:
-            output = generate_eqs_multiply_two(decimals=decimal_answers_check, negatives=negative_answers_check,
+            
+            while not output:
+                
+                output = generate_eqs_multiply_two(decimals=decimal_answers_check, negatives=negative_answers_check,
                                                negative_coefficients=negative_coefficients_check)
-            print("")
-            if output == False:
-                i -= 1
+            
+        print("")  
+            
+    print("---------------------------------")
